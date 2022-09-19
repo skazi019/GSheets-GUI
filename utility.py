@@ -16,4 +16,5 @@ def connectedToInternet():
 def changeFrame(
     master: tk.Tk = None, oldFrame: ttk.Frame = None, newFrame: ttk.Frame = None
 ):
+    print("Chaning frame")
     newFrame.tkraise()

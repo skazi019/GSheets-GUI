@@ -2,12 +2,14 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showerror, showinfo
 
-from utility import connectedToInternet
+from updateDataFrame import UpdateDataFrame
+from utility import connectedToInternet, changeFrame
 
 
 class LoginFrame(ttk.Frame):
     def __init__(self, container):
         super().__init__(container)
+        self.masterFrame: ttk.Frame = container
         # setup the grid layout manager
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
@@ -43,10 +45,11 @@ class LoginFrame(ttk.Frame):
         if connectedToInternet():
             # TODO: get the data from google sheets and show in a frame
             # swtich to that frame and allow for updates
-            showinfo(
-                title="Success",
-                message=f"Getting sheets data for\nUsername: {username}\nDOB:{dob}",
-            )
+            # showinfo(
+            #     title="Success",
+            #     message=f"Getting sheets data for\nUsername: {username}\nDOB:{dob}",
+            # )
+            self.masterFrame.switch_frame(frame_class=UpdateDataFrame)
         else:
             showerror(
                 title="Internet Connection Error",

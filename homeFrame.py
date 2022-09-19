@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, ttk
+from tkinter import ttk
 from loginFrame import LoginFrame
 
 
@@ -11,9 +11,6 @@ class HomeFrame(ttk.Frame):
         self.columnconfigure(1, weight=3)
         self.columnconfigure(2, weight=1)
 
-        self.__create_widgets()
-
-    def __create_widgets(self):
         ttk.Label(master=self, text="Role Change", font=("Helvetica", 24)).grid(
             column=1, row=1, pady=20
         )
@@ -21,5 +18,12 @@ class HomeFrame(ttk.Frame):
         # Using frame as an empty box for proper widgets alignment
         ttk.Frame(master=self, height=50).grid(column=1, row=2)
 
-        loginFrame = LoginFrame(self)
-        loginFrame.grid(column=1, row=3)
+        self._Frame = None
+        self.switch_frame(frame_class=LoginFrame)
+
+    def switch_frame(self, frame_class: ttk.Frame):
+        new_frame = frame_class(self)
+        if self._Frame is not None:
+            self._Frame.destroy()
+        self._Frame = new_frame
+        self._Frame.grid(column=1, row=3)
