@@ -1,5 +1,7 @@
 # docs - https://docs.gspread.org/en/v5.4.0/user-guide.html
 import gspread
+import pandas as pd
+import re
 
 
 # Get data as list of dicts
@@ -31,3 +33,7 @@ class GSheet:
 
         """
         return self._workbook
+
+    def getSheet(self) -> pd.DataFrame:
+        sheetData = pd.DataFrame(self._sheet.get_all_records())
+        return sheetData

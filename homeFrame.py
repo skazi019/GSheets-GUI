@@ -21,9 +21,12 @@ class HomeFrame(ttk.Frame):
         self._Frame = None
         self.switch_frame(frame_class=LoginFrame)
 
-    def switch_frame(self, frame_class: ttk.Frame):
-        new_frame = frame_class(self)
+    def switch_frame(self, frame_class: ttk.Frame, **kwargs):
+        # initialising the frame to be displayed with the HomeFrame class as it's master container
+        new_frame = frame_class(self, **kwargs)
+
         if self._Frame is not None:
             self._Frame.destroy()
+
         self._Frame = new_frame
         self._Frame.grid(column=1, row=3)
