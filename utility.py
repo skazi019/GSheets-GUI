@@ -1,7 +1,9 @@
 import socket
+import tkinter as tk
+from tkinter import ttk
 
 
-def connectToInternet():
+def connectedToInternet():
     try:
         socket.create_connection(
             ("www.google.com", 80)
@@ -9,3 +11,9 @@ def connectToInternet():
         return True
     except OSError:
         return False
+
+
+def changeFrame(
+    master: tk.Tk = None, oldFrame: ttk.Frame = None, newFrame: ttk.Frame = None
+):
+    newFrame.tkraise()
